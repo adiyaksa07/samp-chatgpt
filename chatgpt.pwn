@@ -1,15 +1,16 @@
 /*
-    Filterscript chatgpt (openai)
-    
-    File yang dibutuhkan untuk menjalakan fs ini:
-    Plugins : pawn-memory (https://github.com/BigETI/pawn-memory)
-    Includes : 
+    ChatGPT Filterscript (OpenAI Integration)
+
+    Required files to run this filterscript:
+    Plugins:
+        - pawn-memory (https://github.com/BigETI/pawn-memory)
+    Includes:
         - requests (https://github.com/Southclaws/pawn-requests)
         - zcmd (https://github.com/Southclaws/zcmd)
         - strlib (https://github.com/oscar-broman/strlib)
         - map (https://github.com/BigETI/pawn-map)
 
-    Author : Adiyaksa.
+    Author: Adiyaksa
 */
 #define FILTERSCRIPT
 #include <a_samp>
@@ -31,7 +32,7 @@ new Map:LoadRequestToPlayerID;
 
 public OnFilterScriptInit()
 {
-	print(" Filterscript CHATGPT loaded");
+	print(" ChatGPT Filterscript loaded");
 	return 1;
 }
 
@@ -40,7 +41,7 @@ RequestChat(playerid, params[]) {
     new output1[1000];
     new link[MAX_CHATBUBBLE_LENGTH + MAX_LINK];
 
-    strurlencode(output, "ingat jawab semua pesan / pertanyaan itu secara ringkas tidak boleh melebihi 144 karakter: ");
+    strurlencode(output, "remember to answer every message/question briefly and no longer than 144 characters: ");
     strurlencode(output1, params);
 
     format(link, sizeof(link), "https://api.nyxs.pw/ai/gpt4?text=%s%s", output, output1);
@@ -69,7 +70,7 @@ public OnGetData(Request:id, E_HTTP_STATUS:status, Node:node) {
     JsonGetString(node, "result", string);
 
     if(strlen(string) > MAX_CHATBUBBLE_LENGTH) { 
-        SendClientMessage(playerid, COLOR_YELLOW, "*Whoopss: output ai melebihi 144 karakter");
+        SendClientMessage(playerid, COLOR_YELLOW, "*Whoops: AI output exceeds 144 characters");
     } else { 
         SendClientMessage(playerid, COLOR_WHITE, string);
     }
@@ -79,7 +80,7 @@ public OnGetData(Request:id, E_HTTP_STATUS:status, Node:node) {
 
 CMD:chat(playerid, params[]) { 
     if (isnull(params)) { 
-        SendClientMessage(playerid, COLOR_RED, "*INFO : /chat <pesan luh>");
+        SendClientMessage(playerid, COLOR_RED, "*INFO: /chat <your message>");
     } else { 
         RequestChat(playerid, params);
     }
