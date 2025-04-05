@@ -1,6 +1,6 @@
-# Filterscript ChatGPT (OpenAI) / GTA SA-MP AI
+# ChatGPT Filterscript (OpenAI) / GTA SA-MP AI
 
-## File yang Dibutuhkan untuk Menjalankan Filterscript Ini:
+## Required Files to Run This Filterscript:
 
 ### Plugins:
 - [pawn-memory](https://github.com/BigETI/pawn-memory)
